@@ -1,0 +1,25 @@
+{
+  "name": "alura-docs-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/servidor.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wgutto/alura-docs-main.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/wgutto/alura-docs-main/issues"
+  },
+  "homepage": "https://github.com/wgutto/alura-docs-main#readme",
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}
