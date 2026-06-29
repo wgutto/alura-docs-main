@@ -1,12 +1,13 @@
-const socket = io();
+import { emitirTextoEditor } from "./socket-front-documento.js";
 
 const textoEditor = document.getElementById("editor-texto");
 
-// O evento "keyup" é acionado sempre que o usuário solta uma tecla enquanto digita no campo de texto. Quando isso acontece, o valor atual do campo de texto é enviado para o servidor usando o socket.emit, com o evento "texto_editor" e o valor do campo como dados.
+// O evento "keyup" é adicionado ao elemento de texto do editor. Sempre que o usuário solta uma tecla enquanto digita no editor, a função de callback é executada. Dentro dessa função, o valor atual do texto do editor é obtido e passado como argumento para a função emitirTextoEditor, que envia o valor para o servidor.
 textoEditor.addEventListener("keyup", () => {
-  socket.emit("texto_editor", textoEditor.value);
+  emitirTextoEditor(textoEditor.value);
 });
 
-socket.on("texto_editor_clientes", (texto) => {
-    textoEditor.value = texto;
-  })
+// A função receberTextoEditor é exportada para ser usada em outros módulos. Ela recebe o valor do texto enviado pelo servidor como argumento e atualiza o valor do elemento de texto do editor com esse valor.
+export const receberTextoEditor = (texto) => {
+  textoEditor.value = texto;
+}
