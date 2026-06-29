@@ -19,3 +19,5 @@ servidorHttp.listen(port, () => {
 })
 
 const io = new Server(servidorHttp);
+
+export default io;

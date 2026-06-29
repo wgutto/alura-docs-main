@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/servidor.js"
+    "dev": "nodemon src/socket-back.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/wgutto/alura-docs-main#readme",
   "dependencies": {
     "express": "^4.22.2",
+    "nodemon": "^3.1.14",
     "socket.io": "^4.8.3"
   }
 }
