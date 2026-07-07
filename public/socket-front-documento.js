@@ -1,4 +1,4 @@
-import { atualizaTextoEditor } from "./documento.js";
+import { alertaERedireciona, atualizaTextoEditor } from "./documento.js";
 
 // O socket é criado usando a função io() do Socket.IO. Ele estabelece uma conexão com o servidor e permite enviar e receber eventos em tempo real.
 const socket = io();
@@ -14,7 +14,15 @@ export const emitirTextoEditor = (dados) => {
   socket.emit("texto_editor", dados);
 }
 
+export const excluirDocumento = (nomeDocumento) => {
+  socket.emit("excluir_documento", nomeDocumento);
+}
+
 // O socket.on é usado para ouvir eventos enviados pelo servidor. Neste caso, ele está ouvindo o evento "texto_editor_clientes". Quando esse evento é recebido, a função de callback é executada, e o valor do texto enviado pelo servidor é passado como argumento para a função receberTextoEditor.
 socket.on("texto_editor_clientes", (texto) => {
   atualizaTextoEditor(texto);
+})
+
+socket.on("documento_excluido", (nomeDocumento) => {
+  alertaERedireciona(nomeDocumento);
 })

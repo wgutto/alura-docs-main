@@ -12,7 +12,9 @@ const adicionarDocumento = (nomeDocumento) => {
     texto: ""
   }
 
-  return documentosColecao.insertOne(documento);
+  const resultado = documentosColecao.insertOne(documento);
+
+  return resultado;
 }
 
 const encontrarDocumento = (nomeDocumento) => {
@@ -34,4 +36,10 @@ const atualizaDocumento = (nomeDocumento, texto) => {
   }
 }
 
-export { encontrarDocumento, atualizaDocumento, obterDocumentos, adicionarDocumento };
+const excluirDocumento = (nomeDocumento) => {
+  const resultado = documentosColecao.deleteOne({ nome: nomeDocumento });
+
+  return resultado;
+}
+
+export { encontrarDocumento, atualizaDocumento, obterDocumentos, adicionarDocumento, excluirDocumento };

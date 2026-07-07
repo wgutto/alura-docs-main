@@ -1,6 +1,6 @@
 import "dotenv/config";
 import io from "./servidor.js";
-import { adicionarDocumento, atualizaDocumento, encontrarDocumento, obterDocumentos } from "./documentosDb.js";
+import { adicionarDocumento, atualizaDocumento, encontrarDocumento, excluirDocumento, obterDocumentos } from "./documentosDb.js";
 
 // O io.on é usado para ouvir eventos de conexão de clientes. Quando um novo cliente se conecta, a função de callback é executada, e o ID do cliente conectado é registrado no console.
 io.on("connection", (socket) => {
@@ -42,6 +42,14 @@ io.on("connection", (socket) => {
 
     if (atualizacao.mofiedCount) {
       socket.to(nomeDocumento).emit("texto_editor_clientes", texto);
+    }
+  })
+
+  socket.on("excluir_documento", async (nomeDocumento) => {
+    const resultado = await excluirDocumento(nomeDocumento);
+
+    if (resultado.deletedCount) {
+      io.emit("documento_excluido", nomeDocumento);
     }
   })
 })

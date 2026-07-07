@@ -1,6 +1,7 @@
-import { emitirTextoEditor, selecionarDocumento } from "./socket-front-documento.js";
+import { emitirTextoEditor, excluirDocumento, selecionarDocumento } from "./socket-front-documento.js";
 
 const textoEditor = document.getElementById("editor-texto");
+const botaoExcluir = document.getElementById("excluir-documento");
 const parametros = new URLSearchParams(window.location.search);
 const nomeDocumento = parametros.get("nome");
 document.getElementById("titulo-documento").textContent = nomeDocumento || "Documento sem titulo";
@@ -18,4 +19,17 @@ textoEditor.addEventListener("keyup", () => {
 // A função receberTextoEditor é exportada para ser usada em outros módulos. Ela recebe o valor do texto enviado pelo servidor como argumento e atualiza o valor do elemento de texto do editor com esse valor.
 export const atualizaTextoEditor = (texto) => {
   textoEditor.value = texto;
+}
+
+botaoExcluir.addEventListener("click", () => {
+  excluirDocumento(nomeDocumento);
+})
+
+export const alertaERedireciona = (nome) => {
+
+  if(nome === nomeDocumento) {
+    alert(`O documento ${nomeDocumento} foi excluído`);
+
+    window.location.href = "/";
+  }
 }
